@@ -563,11 +563,22 @@ const generateStorefront = (
     const shuffledForHero = shuffleArray(platformApps, seed);
     collections.push({
         id: 'hero_daily',
-        title: 'Featured Today',
+        title: '
+Featured Today',
         type: 'hero',
         apps: shuffledForHero.slice(0, 5)
     });
-
+collections.push({
+    id: 'ai_education',
+    title: '🤖 AI Education',
+    type: 'swimlane',
+    apps: platformApps.filter(app =>
+        app.name.toLowerCase().includes('ai') ||
+        app.name.toLowerCase().includes('chatgpt') ||
+        app.name.toLowerCase().includes('gemini') ||
+        app.name.toLowerCase().includes('claude')
+    )
+});
     // 2. Recommended For You (Daily Rotation)
     const shuffledForRecommended = shuffleArray(platformApps, seed + 1);
     collections.push({
